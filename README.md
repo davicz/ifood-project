@@ -32,7 +32,7 @@ backend/.venv/bin/python -m pytest -q
 npm run build
 ```
 
-37 testes automatizados (incluindo interpretação, contrato Bedrock simulado e busca lexical): agregação de ingredientes, embalagens, unidades fracionárias, despensa, centavos, estoque insuficiente, tamanho de embalagem por loja, mínimos, dois fretes, prazo da última entrega, cesta vazia, ordenação, validação HTTP e integridade do catálogo. Build TypeScript/Vite e fluxo de compra no navegador verificados. O ambiente atual emite um aviso de depreciação do TestClient para httpx; os testes passam.
+43 testes automatizados (incluindo interpretação, contrato Bedrock simulado e busca lexical): agregação de ingredientes, embalagens, unidades fracionárias, despensa, centavos, estoque insuficiente, tamanho de embalagem por loja, mínimos, dois fretes, prazo da última entrega, cesta vazia, ordenação, validação HTTP e integridade do catálogo. Build TypeScript/Vite e fluxo de compra no navegador verificados. O ambiente atual emite um aviso de depreciação do TestClient para httpx; os testes passam.
 
 ## API
 
@@ -117,7 +117,7 @@ export BEDROCK_MODEL_ID=seu-modelo-ou-inference-profile
 backend/.venv-ai/bin/python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000
 ```
 
-`.env.example` é apenas uma referência; o servidor não carrega `.env` automaticamente. Reinicie o backend e recarregue a página após configurar. A opção Bedrock só habilita quando as duas variáveis existem; isso não comprova acesso ao serviço. A chamada real depende de permissões, disponibilidade regional e faturamento da sua conta. Nenhuma chamada paga foi executada nesta etapa.
+`.env.example` é apenas uma referência; o servidor não carrega `.env` automaticamente. Reinicie o backend e recarregue a página após configurar. A opção Bedrock só habilita quando as duas variáveis existem; isso não comprova acesso ao serviço. A chamada real depende de permissões, disponibilidade regional e faturamento da sua conta. A integração foi validada com uma chamada real ao Claude Haiku 4.5, com confirmação do fluxo completo no navegador. Chamadas ao Bedrock podem gerar cobrança.
 
 `POST /api/interpret`: texto (3–2000 caracteres) e provider `local` ou `bedrock`. A saída inclui proposta, provedor/modelo, uso de tokens retornado pela AWS e confirmação obrigatória. O prompt é limitado ao catálogo e a saída passa por validação de esquema, IDs, duplicações e porções. Não há parser de prosa como fallback disfarçado de LLM. Preços não vêm do modelo. Falhas do provedor e respostas inválidas não alteram o carrinho.
 
@@ -134,7 +134,7 @@ PYTHONPATH=backend backend/.venv-ai/bin/python backend/scripts/evaluate_search.p
 
 O relatório registra 10 consultas manuais de desenvolvimento em um catálogo pequeno e sintético. Deduplica resultados por ingrediente para medir Hit@1/Hit@3; não é um conjunto reservado nem representa qualidade em produção. Resultado observado: lexical 70%/70%, semântica 40%/50%. A busca semântica fica experimental, sem decisão automática de compra. Os tempos incluem a primeira carga, portanto não são benchmark de latência em regime estável. Não ajustamos o modelo para melhorar os resultados desse conjunto.
 
-Os testes de Bedrock usam um cliente falso: validam contrato, prompt, validação e uso de tokens, não qualidade de um LLM real nem acesso AWS. Fontes técnicas: [Converse](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html) e [modelo de embeddings](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2).
+Os testes automatizados de Bedrock usam um cliente falso: validam contrato, prompt, validação e uso de tokens. Além disso, uma chamada real ao Claude Haiku 4.5 foi verificada manualmente; isso não constitui uma avaliação abrangente de qualidade. Fontes técnicas: [Converse](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html) e [modelo de embeddings](https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2).
 
 ### Iniciar Bedrock com chave temporária
 

@@ -44,6 +44,16 @@ def interpret_request(request: InterpretRequest):
     except AIUnavailable as error:
         raise HTTPException(status_code=503, detail=str(error)) from error
     except (ValueError, KeyError, TypeError) as error:
+        import json
+        import logging
+        from pydantic import ValidationError
+        if isinstance(error, ValidationError):
+            issues = [f"{'.'.join(str(part) for part in item['loc'])}: {item['type']}" for item in error.errors(include_input=False, include_url=False, include_context=False)]
+            logging.getLogger(__name__).warning('Resposta do modelo inválida: campos %s', ', '.join(issues))
+        elif isinstance(error, json.JSONDecodeError):
+            logging.getLogger(__name__).warning('Resposta do modelo inválida: JSON malformado')
+        else:
+            logging.getLogger(__name__).warning('Resposta do modelo inválida: %s', type(error).__name__)
         raise HTTPException(status_code=502, detail='A resposta do modelo não passou na validação. Revise seu pedido e tente novamente.') from error
     except Exception as error:
         import logging

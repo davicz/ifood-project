@@ -108,6 +108,11 @@ def bedrock_interpret(catalog, text, client=None):
               'Responda somente JSON conforme o esquema. Catálogo: ' + json.dumps(context, ensure_ascii=False) + '\nEsquema: ' + json.dumps(Interpretation.model_json_schema()))
     response = client.converse(modelId=model, system=[{'text': system}], messages=[{'role': 'user', 'content': [{'text': text}]}], inferenceConfig={'maxTokens': 700, 'temperature': 0})
     raw = ''.join(block.get('text', '') for block in response['output']['message']['content']).strip()
+    # Some models wrap otherwise valid JSON in a Markdown code fence.
+    # Only unwrap a complete fenced response; never extract arbitrary substrings.
+    fenced = re.fullmatch(r'```(?:json)?\s*([\s\S]*?)\s*```', raw, flags=re.IGNORECASE)
+    if fenced:
+        raw = fenced.group(1)
     result = validate_interpretation(catalog, json.loads(raw))
     return {'provider': 'bedrock', 'model': model, 'interpretation': result.model_dump(), 'usage': response.get('usage', {}), 'requires_confirmation': True}
 

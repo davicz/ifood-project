@@ -82,3 +82,23 @@ def test_provider_diagnostics_do_not_disclose_aws_message(monkeypatch, message, 
     assert response.status_code == 503
     assert expected in response.json()['detail']
     assert secret_marker not in response.text
+
+def test_bedrock_accepts_fenced_json(monkeypatch):
+    monkeypatch.setenv('BEDROCK_MODEL_ID', 'test-model')
+    monkeypatch.setenv('AWS_REGION', 'us-east-1')
+    class FencedBedrock:
+        def converse(self, **kwargs):
+            return {'output': {'message': {'content': [{'text': '```json\n{"recipe_ids":["strogonoff"],"servings":4}\n```'}]}}}
+    result = bedrock_interpret(catalog, 'pedido', FencedBedrock())
+    assert result['interpretation']['servings'] == 4
+
+
+def test_provider_validation_logs_never_include_input(monkeypatch, caplog):
+    secret_marker = 'sensitive-llm-response'
+    def invalid(*_):
+        return validate_interpretation(catalog, {'servings': secret_marker})
+    monkeypatch.setattr('app.main.bedrock_interpret', invalid)
+    response = client.post('/api/interpret', json={'text': 'quero estrogonofe', 'provider': 'bedrock'})
+    assert response.status_code == 502
+    assert secret_marker not in caplog.text
+    assert 'servings:' in caplog.text
