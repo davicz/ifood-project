@@ -1,0 +1,11 @@
+node_modules/
+dist/
+*.tsbuildinfo
+.env*
+!.env.example
+.DS_Store
+backend/.venv/
+__pycache__/
+.pytest_cache/
+backend/.venv-ai/
+backend/.cache/

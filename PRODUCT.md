@@ -1,0 +1,2 @@
+# Produto
+Prato é um protótipo web responsivo para transformar pratos escolhidos em uma compra de mercado completa, comparando preço total e prazo. Público: pessoas que querem cozinhar sem montar listas manualmente. Frontend conectado a uma API FastAPI; motor de planejamento separado e catálogo simulado validado. Busca por embeddings locais e assistente com confirmação estão disponíveis. LLM Bedrock é opcional e depende da configuração da conta. Integração com mercados reais será posterior. O projeto é independente e não afiliado ao iFood.

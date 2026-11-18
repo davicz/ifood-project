@@ -1,0 +1,2 @@
+# Direção visual
+Modo: Operate. Interface brasileira de delivery, com identidade própria `prato.`. Vermelho de ação #e92335, branco, cinzas neutros e hero pêssego suave. Tipografia Manrope nos títulos e DM Sans no corpo, com fallbacks sans-serif. Fotos de comida e cartões de produto; navegação simples, estados de seleção visíveis, total da compra separado do custo de consumo. Três telas conectadas: descoberta, ingredientes e mercados. Layout responsivo, foco de teclado visível e respeito a movimento reduzido.

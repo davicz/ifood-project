@@ -1,0 +1,414 @@
+{
+  "schema_version": 1,
+  "simulated": true,
+  "currency": "BRL",
+  "ingredients": [
+    {
+      "id": "chicken",
+      "name": "Peito de frango",
+      "unit": "g",
+      "pack": 500,
+      "price": 15.9
+    },
+    {
+      "id": "rice",
+      "name": "Arroz branco",
+      "unit": "g",
+      "pack": 1000,
+      "price": 6.9
+    },
+    {
+      "id": "cream",
+      "name": "Creme de leite",
+      "unit": "g",
+      "pack": 200,
+      "price": 4.2
+    },
+    {
+      "id": "tomato",
+      "name": "Tomate",
+      "unit": "g",
+      "pack": 500,
+      "price": 5.5
+    },
+    {
+      "id": "pasta",
+      "name": "Macarrão",
+      "unit": "g",
+      "pack": 500,
+      "price": 6.4
+    },
+    {
+      "id": "beef",
+      "name": "Carne moída",
+      "unit": "g",
+      "pack": 500,
+      "price": 22.9
+    },
+    {
+      "id": "lettuce",
+      "name": "Alface",
+      "unit": "un.",
+      "pack": 1,
+      "price": 4.5
+    },
+    {
+      "id": "chickpea",
+      "name": "Grão-de-bico cozido",
+      "unit": "g",
+      "pack": 300,
+      "price": 8.9
+    },
+    {
+      "id": "bread",
+      "name": "Pão de hambúrguer",
+      "unit": "un.",
+      "pack": 4,
+      "price": 9.9
+    },
+    {
+      "id": "cheese",
+      "name": "Queijo muçarela",
+      "unit": "g",
+      "pack": 200,
+      "price": 10.5
+    }
+  ],
+  "recipes": [
+    {
+      "id": "strogonoff",
+      "name": "Estrogonofe de frango",
+      "description": "O clássico que sempre dá vontade de repetir.",
+      "category": "Dia a dia",
+      "minutes": 30,
+      "tag": "Favorito da semana",
+      "image": "photo-1547592180-85f173990554",
+      "needs": {
+        "chicken": 150,
+        "rice": 80,
+        "cream": 70,
+        "tomato": 60
+      }
+    },
+    {
+      "id": "pasta",
+      "name": "Macarrão à bolonhesa",
+      "description": "Molho caseiro e um almoço sem complicação.",
+      "category": "Massas",
+      "minutes": 35,
+      "tag": "Para compartilhar",
+      "image": "photo-1551892374-ecf8754cf8b0",
+      "needs": {
+        "pasta": 100,
+        "beef": 100,
+        "tomato": 120,
+        "cheese": 30
+      }
+    },
+    {
+      "id": "salad",
+      "name": "Salada de grão-de-bico",
+      "description": "Colorida, fresquinha e cheia de sabor.",
+      "category": "Vegetarianos",
+      "minutes": 15,
+      "tag": "Leve & prática",
+      "image": "photo-1512621776951-a57141f2eefd",
+      "needs": {
+        "chickpea": 120,
+        "lettuce": 0.25,
+        "tomato": 100
+      }
+    },
+    {
+      "id": "burger",
+      "name": "Hambúrguer caseiro",
+      "description": "Seu fim de semana merece esse capricho.",
+      "category": "Dia a dia",
+      "minutes": 25,
+      "tag": "Noite especial",
+      "image": "photo-1568901346375-23c9450c58cd",
+      "needs": {
+        "beef": 150,
+        "bread": 1,
+        "cheese": 40,
+        "lettuce": 0.15,
+        "tomato": 50
+      }
+    },
+    {
+      "id": "bowl",
+      "name": "Bowl de frango e salada",
+      "description": "Tudo que você precisa em um prato só.",
+      "category": "Até 30 min",
+      "minutes": 25,
+      "tag": "Almoço resolvido",
+      "image": "photo-1511690743698-d9d85f2fbf38",
+      "needs": {
+        "chicken": 150,
+        "rice": 60,
+        "lettuce": 0.25,
+        "tomato": 100
+      }
+    },
+    {
+      "id": "vegpasta",
+      "name": "Pasta com tomate e queijo",
+      "description": "Poucos ingredientes. Muito conforto.",
+      "category": "Vegetarianos",
+      "minutes": 20,
+      "tag": "Poucos ingredientes",
+      "image": "photo-1473093295043-cdd812d0e601",
+      "needs": {
+        "pasta": 100,
+        "tomato": 150,
+        "cheese": 60,
+        "cream": 40
+      }
+    }
+  ],
+  "stores": [
+    {
+      "id": "a",
+      "name": "Mercado da Vila",
+      "initials": "mv",
+      "color": "#236b49",
+      "freight": 5.9,
+      "minimum": 20,
+      "minutes": 45,
+      "products": [
+        {
+          "ingredient_id": "chicken",
+          "pack": 500,
+          "unit": "g",
+          "price_cents": 1590,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "rice",
+          "pack": 1000,
+          "unit": "g",
+          "price_cents": 690,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "cream",
+          "pack": 200,
+          "unit": "g",
+          "price_cents": 420,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "tomato",
+          "pack": 500,
+          "unit": "g",
+          "price_cents": 550,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "pasta",
+          "pack": 500,
+          "unit": "g",
+          "price_cents": 640,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "beef",
+          "pack": 500,
+          "unit": "g",
+          "price_cents": 2290,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "lettuce",
+          "pack": 1,
+          "unit": "un.",
+          "price_cents": 450,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "chickpea",
+          "pack": 300,
+          "unit": "g",
+          "price_cents": 890,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "bread",
+          "pack": 4,
+          "unit": "un.",
+          "price_cents": 990,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "cheese",
+          "pack": 200,
+          "unit": "g",
+          "price_cents": 1050,
+          "stock": 100
+        }
+      ]
+    },
+    {
+      "id": "b",
+      "name": "Bom Preço",
+      "initials": "bp",
+      "color": "#e99b19",
+      "freight": 8.9,
+      "minimum": 20,
+      "minutes": 35,
+      "products": [
+        {
+          "ingredient_id": "chicken",
+          "pack": 500,
+          "unit": "g",
+          "price_cents": 1383,
+          "stock": 0
+        },
+        {
+          "ingredient_id": "rice",
+          "pack": 1000,
+          "unit": "g",
+          "price_cents": 600,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "cream",
+          "pack": 200,
+          "unit": "g",
+          "price_cents": 365,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "tomato",
+          "pack": 500,
+          "unit": "g",
+          "price_cents": 479,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "pasta",
+          "pack": 500,
+          "unit": "g",
+          "price_cents": 557,
+          "stock": 0
+        },
+        {
+          "ingredient_id": "beef",
+          "pack": 500,
+          "unit": "g",
+          "price_cents": 1992,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "lettuce",
+          "pack": 1,
+          "unit": "un.",
+          "price_cents": 392,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "chickpea",
+          "pack": 300,
+          "unit": "g",
+          "price_cents": 774,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "bread",
+          "pack": 4,
+          "unit": "un.",
+          "price_cents": 861,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "cheese",
+          "pack": 200,
+          "unit": "g",
+          "price_cents": 914,
+          "stock": 100
+        }
+      ]
+    },
+    {
+      "id": "c",
+      "name": "Super Express",
+      "initials": "se",
+      "color": "#6851a3",
+      "freight": 4.9,
+      "minimum": 15,
+      "minutes": 20,
+      "products": [
+        {
+          "ingredient_id": "chicken",
+          "pack": 500,
+          "unit": "g",
+          "price_cents": 1844,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "rice",
+          "pack": 1000,
+          "unit": "g",
+          "price_cents": 800,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "cream",
+          "pack": 200,
+          "unit": "g",
+          "price_cents": 487,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "tomato",
+          "pack": 500,
+          "unit": "g",
+          "price_cents": 638,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "pasta",
+          "pack": 500,
+          "unit": "g",
+          "price_cents": 742,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "beef",
+          "pack": 500,
+          "unit": "g",
+          "price_cents": 2656,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "lettuce",
+          "pack": 1,
+          "unit": "un.",
+          "price_cents": 522,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "chickpea",
+          "pack": 300,
+          "unit": "g",
+          "price_cents": 1032,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "bread",
+          "pack": 4,
+          "unit": "un.",
+          "price_cents": 1148,
+          "stock": 100
+        },
+        {
+          "ingredient_id": "cheese",
+          "pack": 200,
+          "unit": "g",
+          "price_cents": 1218,
+          "stock": 100
+        }
+      ]
+    }
+  ]
+}

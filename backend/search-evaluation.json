@@ -1,0 +1,240 @@
+{
+  "dataset": "10 consultas manuais de desenvolvimento; não é teste reservado",
+  "simulated_catalog": true,
+  "methods": {
+    "lexical": {
+      "hit_at_1": 0.7,
+      "hit_at_3": 0.7,
+      "total_seconds_including_first_load": 0.644,
+      "rows": [
+        {
+          "query": "carne de frango sem osso",
+          "expected": "chicken",
+          "top_ingredients": [
+            "chicken",
+            "beef",
+            "bread"
+          ],
+          "hit_at_1": true,
+          "hit_at_3": true
+        },
+        {
+          "query": "massa para espaguete",
+          "expected": "pasta",
+          "top_ingredients": [
+            "beef",
+            "bread",
+            "cheese"
+          ],
+          "hit_at_1": false,
+          "hit_at_3": false
+        },
+        {
+          "query": "folhas para salada",
+          "expected": "lettuce",
+          "top_ingredients": [
+            "beef",
+            "bread",
+            "cheese"
+          ],
+          "hit_at_1": false,
+          "hit_at_3": false
+        },
+        {
+          "query": "queijo para derreter",
+          "expected": "cheese",
+          "top_ingredients": [
+            "cheese",
+            "beef",
+            "bread"
+          ],
+          "hit_at_1": true,
+          "hit_at_3": true
+        },
+        {
+          "query": "pao para montar sanduiche",
+          "expected": "bread",
+          "top_ingredients": [
+            "bread",
+            "beef",
+            "cheese"
+          ],
+          "hit_at_1": true,
+          "hit_at_3": true
+        },
+        {
+          "query": "tomates frescos para molho",
+          "expected": "tomato",
+          "top_ingredients": [
+            "beef",
+            "bread",
+            "cheese"
+          ],
+          "hit_at_1": false,
+          "hit_at_3": false
+        },
+        {
+          "query": "arroz para acompanhar o almoco",
+          "expected": "rice",
+          "top_ingredients": [
+            "rice",
+            "beef",
+            "bread"
+          ],
+          "hit_at_1": true,
+          "hit_at_3": true
+        },
+        {
+          "query": "creme para molho do estrogonofe",
+          "expected": "cream",
+          "top_ingredients": [
+            "cream",
+            "beef",
+            "bread"
+          ],
+          "hit_at_1": true,
+          "hit_at_3": true
+        },
+        {
+          "query": "carne bovina triturada",
+          "expected": "beef",
+          "top_ingredients": [
+            "beef",
+            "bread",
+            "cheese"
+          ],
+          "hit_at_1": true,
+          "hit_at_3": true
+        },
+        {
+          "query": "grao de bico para salada",
+          "expected": "chickpea",
+          "top_ingredients": [
+            "chickpea",
+            "chicken",
+            "bread"
+          ],
+          "hit_at_1": true,
+          "hit_at_3": true
+        }
+      ]
+    },
+    "semantic": {
+      "hit_at_1": 0.4,
+      "hit_at_3": 0.5,
+      "total_seconds_including_first_load": 4.362,
+      "rows": [
+        {
+          "query": "carne de frango sem osso",
+          "expected": "chicken",
+          "top_ingredients": [
+            "chicken",
+            "bread",
+            "beef"
+          ],
+          "hit_at_1": true,
+          "hit_at_3": true
+        },
+        {
+          "query": "massa para espaguete",
+          "expected": "pasta",
+          "top_ingredients": [
+            "cheese",
+            "chicken",
+            "cream"
+          ],
+          "hit_at_1": false,
+          "hit_at_3": false
+        },
+        {
+          "query": "folhas para salada",
+          "expected": "lettuce",
+          "top_ingredients": [
+            "tomato",
+            "cheese",
+            "chicken"
+          ],
+          "hit_at_1": false,
+          "hit_at_3": false
+        },
+        {
+          "query": "queijo para derreter",
+          "expected": "cheese",
+          "top_ingredients": [
+            "cheese",
+            "cream",
+            "bread"
+          ],
+          "hit_at_1": true,
+          "hit_at_3": true
+        },
+        {
+          "query": "pao para montar sanduiche",
+          "expected": "bread",
+          "top_ingredients": [
+            "bread",
+            "cheese",
+            "chicken"
+          ],
+          "hit_at_1": true,
+          "hit_at_3": true
+        },
+        {
+          "query": "tomates frescos para molho",
+          "expected": "tomato",
+          "top_ingredients": [
+            "tomato",
+            "cheese",
+            "chicken"
+          ],
+          "hit_at_1": true,
+          "hit_at_3": true
+        },
+        {
+          "query": "arroz para acompanhar o almoco",
+          "expected": "rice",
+          "top_ingredients": [
+            "chicken",
+            "bread",
+            "cream"
+          ],
+          "hit_at_1": false,
+          "hit_at_3": false
+        },
+        {
+          "query": "creme para molho do estrogonofe",
+          "expected": "cream",
+          "top_ingredients": [
+            "cheese",
+            "cream",
+            "rice"
+          ],
+          "hit_at_1": false,
+          "hit_at_3": true
+        },
+        {
+          "query": "carne bovina triturada",
+          "expected": "beef",
+          "top_ingredients": [
+            "chicken",
+            "bread",
+            "cheese"
+          ],
+          "hit_at_1": false,
+          "hit_at_3": false
+        },
+        {
+          "query": "grao de bico para salada",
+          "expected": "chickpea",
+          "top_ingredients": [
+            "cheese",
+            "chicken",
+            "bread"
+          ],
+          "hit_at_1": false,
+          "hit_at_3": false
+        }
+      ]
+    }
+  }
+}
