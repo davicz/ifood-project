@@ -1,23 +1,24 @@
-from pathlib import Path
-from fastapi import FastAPI, HTTPException
+import os
+from fastapi import Depends, FastAPI, HTTPException
 from .models import Catalog, PlanRequest
 from .engine import plan, cents
 
-catalog = Catalog.model_validate_json(Path(__file__).with_name('catalog.json').read_text())
+from .catalog_store import demo_catalog as catalog, get_active_catalog
 app = FastAPI(title='Prato API', version='0.1.0', description='Planejamento de compras com catálogo de demonstração. Todos os valores são simulados.')
 
 @app.get('/api/health')
-def health():
-    return {'status': 'ok', 'simulated': True}
+def health(active_catalog: Catalog = Depends(get_active_catalog)):
+    return {'status': 'ok', 'simulated': active_catalog.simulated,
+            'catalog_source': 'postgres' if os.environ.get('DATABASE_URL') else 'json'}
 
 @app.get('/api/catalog')
-def get_catalog():
+def get_catalog(catalog: Catalog = Depends(get_active_catalog)):
     result = catalog.model_dump()
     result['recipes'] = [{**r.model_dump(), 'estimate_per_person': round(sum(cents(next(i for i in catalog.ingredients if i.id == key).price) * amount / next(i for i in catalog.ingredients if i.id == key).pack for key, amount in r.needs.items()) / 100, 2)} for r in catalog.recipes]
     return result
 
 @app.post('/api/plan')
-def create_plan(request: PlanRequest):
+def create_plan(request: PlanRequest, catalog: Catalog = Depends(get_active_catalog)):
     try:
         return plan(catalog, request)
     except ValueError as error:
@@ -27,18 +28,17 @@ from .intelligence import SearchRequest, InterpretRequest, AIUnavailable, search
 
 @app.get('/api/ai/status')
 def ai_status():
-    import os
     return {'local_interpretation': 'rules_only', 'semantic_model': 'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2', 'bedrock_configured': bool(os.environ.get('BEDROCK_MODEL_ID') and os.environ.get('AWS_REGION'))}
 
 @app.post('/api/search')
-def search_catalog(request: SearchRequest):
+def search_catalog(request: SearchRequest, catalog: Catalog = Depends(get_active_catalog)):
     try:
         return search(catalog, request)
     except AIUnavailable as error:
         raise HTTPException(status_code=503, detail=str(error)) from error
 
 @app.post('/api/interpret')
-def interpret_request(request: InterpretRequest):
+def interpret_request(request: InterpretRequest, catalog: Catalog = Depends(get_active_catalog)):
     try:
         return local_interpret(catalog, request.text) if request.provider == 'local' else bedrock_interpret(catalog, request.text)
     except AIUnavailable as error:

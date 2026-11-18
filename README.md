@@ -70,10 +70,11 @@ Exemplo de corpo:
 
 ## Estrutura
 
-- `backend/app/catalog.json`: fonte única dos dados simulados, com versão de esquema e moeda.
+- `backend/app/catalog.json`: catálogo simulado para execução sem banco, com versão de esquema e moeda.
 - `backend/app/models.py`: modelos e validação de dados/requisições.
 - `backend/app/engine.py`: motor puro de planejamento, independente de HTTP e React.
-- `backend/app/main.py`: endpoints FastAPI; catálogo validado ao iniciar.
+- `backend/app/main.py`: endpoints FastAPI e seleção da fonte do catálogo.
+- `backend/app/catalog_store.py`: leitura e validação do catálogo PostgreSQL.
 - `backend/tests/test_planner.py`: testes de domínio, dados e API.
 - `src/api.ts`: cliente HTTP.
 - `src/data.ts`: tipos e helpers de apresentação, sem catálogo duplicado.
@@ -139,3 +140,34 @@ Os testes automatizados de Bedrock usam um cliente falso: validam contrato, prom
 ### Iniciar Bedrock com chave temporária
 
 No terminal da máquina, execute `./scripts/start-bedrock.sh`. Cole a chave temporária no prompt oculto e pressione Enter. O script mantém a chave apenas no ambiente do processo; não a imprime nem salva em arquivo. A região e o modelo padrão correspondem ao Quickstart (podem ser alterados com `AWS_REGION` e `BEDROCK_MODEL_ID`). Se a porta 8000 estiver em uso, pare o servidor anterior antes. Credenciais temporárias expiram; após expirar, gere outra e reinicie o servidor. Não compartilhe credenciais no chat ou no Git.
+
+## Catálogo no Supabase
+
+Execute `supabase/migrations/20261117230600_prato_catalog.sql` no SQL Editor do
+projeto para criar e preencher o schema `prato` com dados simulados.
+
+No painel do Supabase, abra **Connect → Session pooler**, copie a URI e
+substitua `[YOUR-PASSWORD]` pela senha do banco. Codifique caracteres
+reservados da senha para uso na URI, como `@` → `%40`. Inclua
+`?sslmode=require` na URI (ou `&sslmode=require` se ela já tiver parâmetros).
+Mantenha a URI fora do GitHub e do frontend.
+
+Na raiz do projeto, no Terminal do Mac (zsh):
+
+```zsh
+backend/.venv-ai/bin/python -m pip install -r backend/requirements-postgres.txt
+read -rs 'DATABASE_URL?Cole a URL PostgreSQL completa e pressione Enter: '
+printf '\n'
+export DATABASE_URL
+./scripts/start-bedrock.sh
+```
+
+Para rodar sem Bedrock, substitua a última linha por
+`backend/.venv-ai/bin/python -m uvicorn app.main:app --app-dir backend --host 127.0.0.1 --port 8000`.
+Se precisar reiniciar, pare o servidor anterior com Ctrl+C no terminal dele.
+
+`GET /api/health` indica `catalog_source: postgres` depois de uma leitura
+bem-sucedida. Catálogo, comparação, busca e interpretação consultam as
+mesmas tabelas. Alterações feitas no banco aparecem nas próximas consultas.
+Com `DATABASE_URL` ausente, o app usa o JSON de demonstração. Com uma URL
+configurada e indisponível, retorna 503 em vez de mostrar preços do JSON.
